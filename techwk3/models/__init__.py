@@ -1,1 +1,1 @@
-#from . import [module_name]
+from . import pos_session
