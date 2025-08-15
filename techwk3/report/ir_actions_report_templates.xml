@@ -193,12 +193,8 @@
     <template id="report_saleorder_raw_nonzero">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="sale.report_saleorder_document_nonzero" t-lang="doc.partner_id.lang"/>
+                <t t-call="techwk3.report_saleorder_document_nonzero" t-lang="doc.partner_id.lang"/>
             </t>
         </t>
-    </template>
-
-    <template id="report_saleorder">
-        <t t-call="sale.report_saleorder_raw_nonzero"/>
     </template>
 </odoo>

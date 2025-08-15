@@ -4,10 +4,10 @@
         <field name="name">Nonzero Quotation / Order</field>
         <field name="model">sale.order</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">sale.report_saleorder</field>
-        <field name="report_file">sale.report_saleorder</field>
+        <field name="report_name">techwk3.report_saleorder_raw_nonzero</field>
+        <field name="report_file">techwk3.report_saleorder_raw_nonzero</field>
         <field name="print_report_name">(object.state in ('draft', 'sent') and 'Nonzero Quotation - %s' % (object.name)) or 'Nonzero Order - %s' % (object.name)</field>
-        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
         <field name="binding_type">report</field>
     </record>
 </odoo>
