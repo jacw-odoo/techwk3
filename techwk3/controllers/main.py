@@ -1,5 +1,6 @@
-from odoo import fields, models
-from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo import http
+from odoo.http import request
+from odoo.addons.website_sale.controllers.main import WebsiteSale, Website
 
 class NewWebsiteSale(WebsiteSale):
     # trying to inherit the WebsiteSale class.
@@ -7,7 +8,7 @@ class NewWebsiteSale(WebsiteSale):
     def _shop_lookup_products(self, attrib_set, options, post, search, website):
         fuzzy_search_term, product_count, search_result = super()._shop_lookup_products(attrib_set, options, post, search, website)
         # need to connect the UID to a partner record first
-        user = search_result.env["res.users"].browse(search_result.env.context["uid"])
+        user = search_result.env.user
         # iterate over list, removing products that shan't be seen
         for product in search_result:
             product.ensure_one()
@@ -17,4 +18,15 @@ class NewWebsiteSale(WebsiteSale):
         
         #return None
         return fuzzy_search_term, product_count, search_result
-
+    
+    @http.route([
+        '/shop',
+        '/shop/page/<int:page>',
+        '/shop/category/<model("product.public.category"):category>',
+        '/shop/category/<model("product.public.category"):category>/page/<int:page>',
+    ], type='http', auth="public", website=True, sitemap=WebsiteSale.sitemap_shop)
+    def shop(self):
+        print('debug')
+        if request.env.user._is_public(): #request.session._is_public_user():
+            return request.redirect("/web/login")
+        return super().shop(self)
