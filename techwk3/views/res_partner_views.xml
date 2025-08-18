@@ -1,2 +1,16 @@
 <odoo>
+    <record id="res_partner_view_form" inherit_id>
+        <field name="name">res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group name="sale">
+                <field name="product_allowlist_ids" widget="one2many">
+                    <list string="Available Products" editable="bottom">
+                        <field name="name"/>
+                        <field name="list_price"/>
+                    </list>
+                </field>
+            </group>
+    </record>
 </odoo>
