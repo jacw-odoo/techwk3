@@ -1,1 +1,1 @@
-#from . import [module_name]
+from . import sale_order_line
