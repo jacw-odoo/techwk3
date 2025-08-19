@@ -1,6 +1,6 @@
-from odoo import http
-from odoo.http import request
-from odoo.addons.website_sale.controllers.main import WebsiteSale, Website
+from odoo import http,_
+from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.exceptions import ValidationError
 
 class NewWebsiteSale(WebsiteSale):
     # trying to inherit the WebsiteSale class.
@@ -20,14 +20,12 @@ class NewWebsiteSale(WebsiteSale):
         
         return fuzzy_search_term, product_count, search_result
     
-    # TODO: simplify this method, look into controller arg auth='user', add product
-    @http.route([
-        '/shop',
-        '/shop/page/<int:page>',
-        '/shop/category/<model("product.public.category"):category>',
-        '/shop/category/<model("product.public.category"):category>/page/<int:page>',
-    ], type='http', auth="public", website=True, sitemap=WebsiteSale.sitemap_shop)
+    @http.route(auth="user")
     def shop(self):
-        if request.env.user._is_public():
-            return request.redirect("/web/login")
         return super().shop(self)
+    
+    @http.route(auth="user")
+    def product(self, product, category='', search='', **kwargs):
+        if product.partner_allowed_id.id == False or product.env.user.partner_id.commercial_partner_id.id != product.sudo().partner_allowed_id.commercial_partner_id.id:
+            return http.request.redirect('/shop')
+        return super().product(product,category,search,**kwargs)
