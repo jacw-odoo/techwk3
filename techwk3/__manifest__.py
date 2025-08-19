@@ -6,5 +6,6 @@
     "data":[
         # SECURITY
         # VIEWS
+        "views/sale_order_views.xml"
     ],
 }

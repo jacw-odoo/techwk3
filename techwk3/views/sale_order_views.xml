@@ -1,0 +1,16 @@
+<odoo>
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//page[@name='order_lines']/field[1]/form/group[1]" position="inside">
+                <field name="price_difference" invisible="1"/>
+            </xpath> -->
+            <xpath expr="//field[@name='price_unit'][@readonly]" position="replace" >
+                <field name="price_difference" column_invisible="True"/>
+                <field name="price_unit" decoration-danger="price_difference"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
