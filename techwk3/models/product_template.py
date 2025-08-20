@@ -7,10 +7,10 @@ class ProductTemplate(models.Model):
     # barcode
     
     @api.depends("product_variant_ids.product_group")
-    def _compute_barcode(self):
+    def _compute_product_group(self):
         self._compute_template_field_from_variant_field('product_group')
 
-    def _search_barcode(self, operator, value):
+    def _search_product_group(self, operator, value):
         subquery = self.with_context(active_test=False)._search([
             ('product_variant_ids.product_group', operator, value),
         ])
