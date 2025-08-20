@@ -47,8 +47,8 @@ class AgedReceivableCustomHandler(models.AbstractModel):
                     'total': None,
                     'has_sublines': query_res['aml_count'] > 0,
                     # TODO: add ref, invoice_user_id
-                    'ref': query_res['ref'],
-                    'invoice_user_id': query_res['invoice_user_id'],
+                    'ref': query_res['ref'][0],
+                    'invoice_user_id': self.env['res.users'].browse(query_res['invoice_user_id'][0]).name or None,
 
                     # Needed by the custom_unfold_all_batch_data_generator, to speed-up unfold_all
                     'partner_id': query_res['partner_id'][0] if query_res['partner_id'] else None,
