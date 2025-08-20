@@ -1,1 +1,2 @@
-#from . import [module_name]
+from . import product_product
+from . import product_template
