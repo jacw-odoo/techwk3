@@ -11,7 +11,6 @@ class ProductProduct(models.Model):
         for product in self:
             if not product.barcode or (product.product_group and
                     product.product_group[:2].upper() != product.barcode[:2]):
-                product._create_product_group_sequence(product.pro)
-                product.barcode = product.env["ir.sequence"].next_by_code('product.product.{group}')
+                product.barcode = product.env["ir.sequence"].next_by_code(f'product.product.{product.product_group}')
             else:
                 product.barcode = False

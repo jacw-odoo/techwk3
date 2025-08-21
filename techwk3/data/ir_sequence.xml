@@ -1,0 +1,33 @@
+<odoo>
+    <record id='product_product_print' model="ir.sequence">
+        <field name="name">Product Group Print Sequence</field>
+        <field name="company_id">1</field>
+        <field name="code">product.product.print</field>
+        <field name="implementation">standard</field>
+        <field name="prefix">PR.</field>
+        <field name="padding">6</field>
+        <field name="number_increment">1</field>
+        <field name="number_next_actual">1</field>
+    </record>
+    <record id='product_product_read' model="ir.sequence">
+        <field name="name">Product Group Read Sequence</field>
+        <field name="company_id">1</field>
+        <field name="code">product.product.read</field>
+        <field name="implementation">standard</field>
+        <field name="prefix">RE.</field>
+        <field name="padding">6</field>
+        <field name="number_increment">1</field>
+        <field name="number_next_actual">1</field>
+    </record>
+    <record id='product_product_scan' model="ir.sequence">
+        <field name="name">Product Group Scan Sequence</field>
+        <field name="company_id">1</field>
+        <field name="code">product.product.scan</field>
+        <field name="implementation">standard</field>
+        <field name="prefix">SC.</field>
+        <field name="padding">6</field>
+        <field name="number_increment">1</field>
+        <field name="number_next_actual">1</field>
+    </record>
+</odoo>
+

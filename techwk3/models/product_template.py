@@ -3,7 +3,7 @@ from odoo import api,fields,models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    product_group = fields.Selection([('pr','Printer'),('re','Reader'),('sc','Scanner')],compute="_compute_product_group",inverse="_set_product_group",search="_search_product_group")
+    product_group = fields.Selection([('print','Printer'),('read','Reader'),('scan','Scanner')],compute="_compute_product_group",inverse="_set_product_group",search="_search_product_group")
     # barcode
     
     @api.depends("product_variant_ids.product_group")

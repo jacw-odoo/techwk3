@@ -4,6 +4,8 @@
     "license": "OEEL-1",
     "depends": ["product"],
     "data":[
+        # DATA
+        "data/ir_sequence.xml",
         # SECURITY
         # VIEWS
         "views/product_product_views.xml",
